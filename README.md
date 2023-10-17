@@ -65,3 +65,23 @@ avatarId: '0xAAAAAAAAAAAAAAAAA',
 ### Billboard:
 
 This component also overwrites a property of **Transform**. Billboard makes sure that the entity it is affecting always faces the player's camera. You can choose the rotation axis or a combination of two (only with the x and y axes).
+
+### MeshRenderer:
+
+MeshRenderer gives a primitive shape to the entity that will be rendered in the scene. We can give it basic shapes such as cube, sphere, plane or cylinder (the latter is given two diameters, so it can be considered a truncated cone). 
+To modify this geometry we must use the **Transform** component.
+
+### Material:
+
+If the entity has the **MeshRenderer** component, it is possible to add the Material component to it, which will provide material to the figure rendered by the MeshRenderer component. The Material component supports different properties such as texture, color, emission color and intensity, transparencies, etc.
+
+### GltfContainer:
+
+Component that allows us to load a 3D model in **glTF** format together with its textures, skeleton, animations, etc. It is very useful when rendering primitive figures with MeshRenderer is not enough.
+
+### MeshCollider:
+
+MeshCollider works similarly to MeshRenderer, this time instead of rendering a primitive shape it will create it as a collider, and you can choose its behavior by selecting the collider layer.
+
+### Visibility:
+Gives visibility or invisibility to an entity. Note that even if the entity has **MeshCollider** it will still collide even if it is invisible.
