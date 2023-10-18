@@ -89,7 +89,7 @@ Gives visibility or invisibility to an entity. Note that even if the entity has 
 
 ### CameraMode and CameraModeArea:
 
-These components can be explained together. CameraModeArea gives us information about the state of the player's camera, this can be in first or third person. CameraModeArea will force this property in a volume determined by a vector of three dimensions. When the player enters the zone delimited in the CameraModeArea it doesn't matter his current CameraMode, it will force the one set in the properties of the component.
+These components can be explained together. CameraMode gives us information about the state of the player's camera, this can be in first or third person. CameraModeArea will force this property in a volume determined by a vector of three dimensions. When the player enters the zone delimited in the CameraModeArea it doesn't matter his current CameraMode, it will force the one set in the properties of the component.
 It should be noted that this component will only be affected by the position and rotation properties of the Transform component, not by the scale property. You can only determine its size by modifying its **area** property.
 
 ```Typescript
@@ -121,3 +121,11 @@ This string includes:
 
 Both components serve to output sound. AudioSource for sounds emitted directly from the entity, i.e. from a certain position in the scene, while AudioStream emits sound in the entire scene no matter where you are positioned in the scene.
 In addition AudioSource uses sound clips from the project, preferably from the separate ```/sounds``` folder, while AudioStream allows to use audio from external resources, as long as they are https urls, are allowed hosts in the scene and do not violate [CORS Policies](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)🔗
+
+### Animator:
+
+This component manipulates the behavior of animations in a 3D model. It can store different states, each of these is an object that defines each animation. For example which clip of the model it is, if it is playing, if the loop is true or false, the playback speed or the weight of the animation, which is used to give different intensity to the movement of the affected bones.
+
+### TextShape:
+
+This component renders floating text which can be positioned with **Transform** and its size can be set from the font size or scale of the Transform. It has several properties that can be defined such as color, line spacing, alignment, etc.
