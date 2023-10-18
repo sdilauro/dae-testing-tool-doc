@@ -1,4 +1,4 @@
-# Decentraland Alternative Explorers Testing Tool
+# Decentraland Alternative Explorers Testing Tool 🔧
 
 ## Introduction
 
@@ -84,4 +84,40 @@ Component that allows us to load a 3D model in **glTF** format together with its
 MeshCollider works similarly to MeshRenderer, this time instead of rendering a primitive shape it will create it as a collider, and you can choose its behavior by selecting the collider layer.
 
 ### Visibility:
+
 Gives visibility or invisibility to an entity. Note that even if the entity has **MeshCollider** it will still collide even if it is invisible.
+
+### CameraMode and CameraModeArea:
+
+These components can be explained together. CameraModeArea gives us information about the state of the player's camera, this can be in first or third person. CameraModeArea will force this property in a volume determined by a vector of three dimensions. When the player enters the zone delimited in the CameraModeArea it doesn't matter his current CameraMode, it will force the one set in the properties of the component.
+It should be noted that this component will only be affected by the position and rotation properties of the Transform component, not by the scale property. You can only determine its size by modifying its **area** property.
+
+```Typescript
+const modArea = new Entity()
+
+CameraModeArea.create(modArea, {
+     //This is only one way to size to the component
+    area: Vector3.create(16, 1, 14),
+    cameraMode: CameraMode.FirstPerson,
+  })
+```
+
+### NftShape:
+
+This component renders a 2D NFT in a frame that can be chosen from many styles. The frame adjusts to the size of the NFT automatically.
+
+```
+urn:decentraland:<CHAIN>:<CONTRACT_STANDARD>:<CONTRACT_ADDRESS>:<TOKEN_ID>
+```
+
+This string includes:
+
+- The network (currently only Ethereum is supported)
+- The contract standard that this token is based on, for example erc721
+- The contract of the token (for example, the CryptoKitties contract)
+- The id of the specific token to display
+
+### AudioStream and AudioSource:
+
+Both components serve to output sound. AudioSource for sounds emitted directly from the entity, i.e. from a certain position in the scene, while AudioStream emits sound in the entire scene no matter where you are positioned in the scene.
+In addition AudioSource uses sound clips from the project, preferably from the separate ```/sounds``` folder, while AudioStream allows to use audio from external resources, as long as they are https urls, are allowed hosts in the scene and do not violate [CORS Policies](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)🔗
