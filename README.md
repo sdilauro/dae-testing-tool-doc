@@ -156,15 +156,19 @@ Transform relates to most of the spatial components that need to be spatially de
 
 All entities with rendered components, such as primitive shapes, 3d models, text shapes, nft shapes, etc. can be made visible or invisible with this component.
 
-### VideoPlayer and MeshRenderer, Material:
+### VideoPlayer and MeshRenderer, Material, VideoEvents:
 
 To play a video we need an entity (in this example: ```screen```) visible in the scene (create MeshRenderer) to which we must set a material (create Material) with a video texture:
 
-````Typescript
+```Typescript
 const screen = engine.addEntity()
 
-MeshRenderer.createOrReplace(screen, { mesh: { $case: 'plane', plane: { uvs: [] } } } })
-Transform.create(screen, { position: { x: 0, y: 0, z: -0.55 }, scale: Vector3.create(0.9, 0.9, 1), parent: frame })
+MeshRenderer.createOrReplace(screen, { mesh: { $case: 'plane', plane: { uvs: [] } } })
+Transform.create(screen, 
+    { position: { x: 0, y: 0, z: -0.55 },
+     scale: Vector3.create(0.9, 0.9, 1),
+     parent: frame 
+})
 
 VideoPlayer.create(screen, {
     src: 'assets/videos/starwarstrailer.mp4',
@@ -182,3 +186,15 @@ Material.setPbrMaterial(screen, {
     metallic: 0,
 })
 ```
+In addition, VideoPlayer can be combined with VideoEvent, a component that we can consult and read all its information to use in the scene. The information is as follows:
+
+```Typescript
+videoEvent: {
+    currentOffset: number
+    state: number
+    tickNumber: number
+    timestamp: number
+    videoLength: number
+}
+```
+### 
