@@ -4,6 +4,7 @@
 ### Component description:
 - [Transform](#transform)
 - [AvatarAttach](#avataratach)
+- WIP...
 
 ## Introduction
 
@@ -137,8 +138,47 @@ This component manipulates the behavior of animations in a 3D model. It can stor
 
 This component renders floating text which can be positioned with **Transform** and its size can be set from the font size or scale of the Transform. It has several properties that can be defined such as color, line spacing, alignment, etc.
 
+### VideoPlayer:
+
+This component stores statuses containing information about videos such as the source, which can be a file uploaded to the scene, or from an external source, or live via Decentraland Cast.
+
+### VideoEvent:
+
+This component has information about the state of the **VideoPlayer**, it can be queried to, for example, synchronize player events with scene events such as starting an animation.
+
 ## Relationships:
 
-### Transform:
+### Transform and spatial components:
 
-Transform se relaciona con la mayoría de los componentes que requieren ser definidos espacialmente en la escena.
+Transform relates to most of the spatial components that need to be spatially defined in the scene.
+
+### Visibility and rendered components:
+
+All entities with rendered components, such as primitive shapes, 3d models, text shapes, nft shapes, etc. can be made visible or invisible with this component.
+
+### VideoPlayer and MeshRenderer, Material:
+
+To play a video we need an entity (in this example: ```screen``) visible in the scene (create MeshRenderer) to which we must set a material (create Material) with a video texture:
+
+````Typescript
+const screen = engine.addEntity()
+
+MeshRenderer.createOrReplace(screen, { mesh: { $case: 'plane', plane: { uvs: [] } } } })
+Transform.create(screen, { position: { x: 0, y: 0, z: -0.55 }, scale: Vector3.create(0.9, 0.9, 1), parent: frame })
+
+VideoPlayer.create(screen, {
+    src: 'assets/videos/starwarstrailer.mp4',
+    playing: playing,
+    volume: 0.2,
+    loop: true
+})
+
+const videoTexture = Material.Texture.Video({ videoPlayerEntity: screen })
+
+Material.setPbrMaterial(screen, {
+    texture: videoTexture,
+    roughness: 1.0,
+    specularIntensity: 0,
+    metallic: 0,
+})
+```
