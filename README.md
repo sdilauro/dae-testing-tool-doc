@@ -158,7 +158,7 @@ All entities with rendered components, such as primitive shapes, 3d models, text
 
 ### VideoPlayer and MeshRenderer, Material:
 
-To play a video we need an entity (in this example: ```screen``) visible in the scene (create MeshRenderer) to which we must set a material (create Material) with a video texture:
+To play a video we need an entity (in this example: ```screen```) visible in the scene (create MeshRenderer) to which we must set a material (create Material) with a video texture:
 
 ````Typescript
 const screen = engine.addEntity()
