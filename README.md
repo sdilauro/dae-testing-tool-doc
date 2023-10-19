@@ -1,5 +1,10 @@
 # Decentraland Alternative Explorers Testing Tool 🔧
 
+## INDEX:
+### Component description:
+- [Transform](#transform)
+- [AvatarAttach](#avataratach)
+
 ## Introduction
 
 The entities that make up the Decentraland scenes can be modified with different components. The purpose of this tool is to check the correct behavior of the components in the different alternative clients.
@@ -7,6 +12,7 @@ To do so, it is necessary to prepare a scene where we can visualize individually
 
 ## Components:
 
+<a id="transform"></a>
 ### Transform:
 
 This component, as its name indicates, transforms the entity, giving it position, rotation, scale and a parent. 
@@ -15,6 +21,7 @@ This component, as its name indicates, transforms the entity, giving it position
 - Rotation: Quaternion
 - Parent: Entity
 
+<a id="avataratach"></a>
 ### AvatarAttach:
 
 Again, the name is quite descriptive. This component gives us the possibility of attaching an entity to the Player entity, but not simply as a child, it gives us a series of options to attach it in a osition, for example right hand, left hand, etc. It should be noted that this component verwrites the **Transform**, so if we want to change for example the position, we must assign a parent entity and then attach that parent to the avatar.
@@ -129,3 +136,9 @@ This component manipulates the behavior of animations in a 3D model. It can stor
 ### TextShape:
 
 This component renders floating text which can be positioned with **Transform** and its size can be set from the font size or scale of the Transform. It has several properties that can be defined such as color, line spacing, alignment, etc.
+
+## Relationships:
+
+### Transform:
+
+Transform se relaciona con la mayoría de los componentes que requieren ser definidos espacialmente en la escena.
