@@ -234,7 +234,53 @@ In the case of AudioSource, we should modify the position of the entity and test
 ### AvatarAttach and AvatarBase:
 To test this component we will generate an NPC Avatar in the scene, seting up differents properties of AvatarBase and attach a sphere to the different anchor points, then verify the snapshots.
 
-### AvatarEmotesCommand: WIP
-### AvatarEquippedData: WIP
+### AvatarEmotesCommand: TODO
+### AvatarEquippedData: TODO
 
-###
+### AvatarModifierArea:
+To test this component we must create an npc (if it is affected) and position it inside and outside the region to check the behavior of the avatar. Then change the ```area``` leaving the npc in the same position but outside of it to verify that its size is modified with this property. Finally test modifying the entity with scale (from the ```transform``` component) which should not affect the ```area``` of effect. All these modifications will be captured through snapshots to be compared.
+
+### AvatarShape: TODO
+
+### Billboard:
+The Billboard component will be tested by placing the camera in different positions and modifying the BillboardMode to take snapshots that will be compared with the reference ones.
+
+### CameraMode:
+CameraMode gives us information that we can compare with expected information for different map positions (forcing this property) or forcing the action of switching the mode manually. In this case we only need to compare what mode the camera is in versus the expected mode.
+
+### CameraModeArea:
+We can test this component by snapshots or using the ```CameraMode``` component. Also try to change the area affected by ```Transform``` scale, which should not work.
+
+### GltfContainer:
+Like all rendering components, we will use snapshots to check its correct operation.
+
+### GltfContainerLoadingState:
+The performance can be verified by comparing the information provided by the component with that expected.
+
+### Material:
+This component must be tested by means of snapshots, but we must be meticulous in going through each of its many properties.
+
+### MeshCollider: TODO
+
+### MeshRenderer:
+MeshRenderer will be tested by snapshots, traversing each shape and its respective properties. We will also verify that ```Transform``` affects it correctly.
+
+### NftShape: TODO
+
+### PlayerIdentity:
+PlayerIdentity will be tested by comparing the information it gives us against the expected information.
+
+### PointerEvents and PointerEventsResult:
+PointersEvents should have two sections in the test, on the one hand a visual test using snapshots, to evaluate the ```hover_text``` and a series of simulated clicks to test the other properties and to receive different ```PointerEventsResults``` for comparison.
+
+### PointerLock:
+Like each info component, this will be tested comparing it with expected information.
+
+### Raycast and RaycastResult:
+We can test this component by adding it to an entity that we will move in front of the camera to test different properties, such as ```max_distance```, ```collision_mask```, types of ```direction```, etc.
+We will use the ```RaycastResult``` to compare with the information we predict.
+
+### TextShape:
+Like each rendered component, this will be tested comparing it with reference snapshots. We must be meticulous in going trough each of its many properties.
+
+### Tween, TweenSequence, TwinState: TODO
